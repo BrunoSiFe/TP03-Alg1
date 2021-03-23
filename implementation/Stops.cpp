@@ -1,33 +1,33 @@
-#include "../include/Stopover.h"
+#include "../include/Stops.h"
 
-Stopover::Stopover() : Stopover(0, 0)
+Stops::Stops() : Stops(0, 0)
 {
 }
-Stopover::Stopover(int time, int price)
+Stops::Stops(int time, int price)
 {
     this->time = time;
     this->price = price;
 }
 
-int Stopover::getTime()
+int Stops::getTime()
 {
     return this->time;
 }
 
-int Stopover::getPrice()
+int Stops::getPrice()
 {
     return this->price;
 }
 
-void Stopover::setTime(int time){
+void Stops::setTime(int time){
     this->time = time;
 }
 
-void Stopover::setPrice(int price){
+void Stops::setPrice(int price){
     this->price = price;
 }
 
-double Stopover::getDiscountedPrice(double discount)
+double Stops::getDiscountedPrice(double discount)
 {
     double doublePrice = (double)this->price;
     double priceWithDiscount = doublePrice - (doublePrice * discount);

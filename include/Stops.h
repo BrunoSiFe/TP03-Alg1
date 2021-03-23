@@ -1,7 +1,7 @@
 #ifndef STOPOVER
 #define STOPOVER
 
-class Stopover
+class Stops
 {
     private:
         int time;
@@ -9,8 +9,8 @@ class Stopover
 
     public:
 
-        Stopover();
-        Stopover(int time, int price);
+        Stops();
+        Stops(int time, int price);
 
         int getTime();
         int getPrice();

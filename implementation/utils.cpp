@@ -20,7 +20,7 @@ double Utils::findMinimumValueInColumn(double **costsMatrix, int column, int row
   return min;
 }
 
-void Utils::generateRowOfCosts(int stopoverQuantity, int maxStopovers, int discountTime, std::vector<Stopover *> stopovers, std::vector<double> discounts, int start, int end, double **costs)
+void Utils::generateRowOfCosts(int stopoverQuantity, int maxStopovers, int discountTime, std::vector<Stops *> stopovers, std::vector<double> discounts, int start, int end, double **costs)
 {
   Utils *utilityFunctions = new Utils();
   int timeElapsed = 0;
@@ -30,7 +30,7 @@ void Utils::generateRowOfCosts(int stopoverQuantity, int maxStopovers, int disco
 
   for (int j = start; j < end; j++)
   {
-    Stopover *stopover = stopovers.at(j);
+    Stops *stop = stopovers.at(j);
 
     if (quantityStops < maxStopovers)
     {
@@ -41,10 +41,10 @@ void Utils::generateRowOfCosts(int stopoverQuantity, int maxStopovers, int disco
       currentDiscount = 0;
     }
 
-    costs[start][j] = previousCost + stopover->getDiscountedPrice(currentDiscount / 100);
+    costs[start][j] = previousCost + stop->getDiscountedPrice(currentDiscount / 100);
     previousCost = costs[start][j];
     quantityStops++;
-    timeElapsed += stopover->getTime();
+    timeElapsed += stop->getTime();
 
     if (timeElapsed >= discountTime)
     {

@@ -2,14 +2,14 @@
 #include <vector>
 #include <iomanip>
 
-#include "include/Stopover.h"
+#include "include/Stops.h"
 #include "include/utils.h"
 
 
-std::vector<Stopover *> createStopoverVector(int stopoverQuantity)
+std::vector<Stops *> createStopoverVector(int stopoverQuantity)
 {
 
-  std::vector<Stopover *> stopovers;
+  std::vector<Stops *> stops;
 
   for (int i = 0; i < stopoverQuantity; i++)
   {
@@ -19,10 +19,10 @@ std::vector<Stopover *> createStopoverVector(int stopoverQuantity)
 
     std::cin >> time >> price;
 
-    stopovers.push_back(new Stopover(time, price));
+    stops.push_back(new Stops(time, price));
   }
 
-  return stopovers;
+  return stops;
 }
 
 std::vector<double> createDiscountsVector(int maxStopovers)
@@ -52,7 +52,7 @@ int main()
 
   std::vector<double> discounts = createDiscountsVector(maxStopovers);
 
-  std::vector<Stopover *> stopovers = createStopoverVector(stopoverQuantity);
+  std::vector<Stops *> stops = createStopoverVector(stopoverQuantity);
 
   double **costs = (double **)malloc(stopoverQuantity * sizeof(double));
   for (int i = 0; i < stopoverQuantity; i++)
@@ -62,7 +62,7 @@ int main()
 
   for (int i = 0; i < stopoverQuantity; i++)
   {
-    utilityFunctions->generateRowOfCosts(stopoverQuantity, maxStopovers, discountTime, stopovers, discounts, i, stopoverQuantity, costs);
+    utilityFunctions->generateRowOfCosts(stopoverQuantity, maxStopovers, discountTime, stops, discounts, i, stopoverQuantity, costs);
   }
 
   double minimumCost = utilityFunctions->findMinimumValueInColumn(costs, stopoverQuantity - 1, stopoverQuantity);
